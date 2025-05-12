@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Aviator Signal Demo</title>
+  <style>
+    body { font-family: Arial; background: #111; color: #fff; text-align: center; padding: 30px; }
+    .signal-box { border: 2px solid #0f0; padding: 20px; margin: 20px auto; width: 300px; background: #222; border-radius: 10px; }
+    button { padding: 10px 20px; font-size: 18px; background: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h1>Aviator Signal System</h1>
+  <div class="signal-box">
+    <p id="round">Round: </p>
+    <p id="time">Time: </p>
+    <p id="crash">Crash: </p>
+  </div>
+  <button onclick="showNext()">Next Signal</button>
+
+  <script>
+    const signals = [
+      "1.19x", "11.83x", "1.27x", "1.60x", "9.26x", "1.55x", "1036.82x",
+      "1.17x", "1.05x", "1.41x", "41.76x", "3.24x", "2.93x",
+      "4.05x", "2.11x", "1.31x", "4.81x", "1.40x", "5.37x", "1.39x", "5.67x",
+      "1.73x", "1.93x", "2.48x", "7.33x"
+    ];
+
+    let index = 0;
+    let round = 1;
+
+    function showNext() {
+      const signal = signals[index];
+      const time = new Date().toLocaleTimeString();
+      document.getElementById("round").innerText = "Round: " + round;
+      document.getElementById("time").innerText = "Time: " + time;
+      document.getElementById("crash").innerText = "Crash: " + signal;
+      
+      index = (index + 1) % signals.length;
+      round++;
+    }
+
+    showNext(); // Show first signal on load
+  </script>
+</body>
+</html>
